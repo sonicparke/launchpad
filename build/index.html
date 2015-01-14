@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html ng-app="LaunchPad">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+    <script type="text/javascript">
+        // THIS MUST BE LEFT AT THE TOP OF THE PAGE.
+        document.write('<base href="' + document.location + '" />');
+    </script>
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- inject-vendor:css -->
+    <link rel="stylesheet" href="css/vendor.min-f069ad8e.css">
+    <!-- endinject -->
+
+    <!-- inject-app:css -->
+    <link rel="stylesheet" href="css/app.min-dc92f34f.css">
+    <!-- endinject -->
+    <title>AXC Launch Pad Dev</title>
+</head>
+<body ng-controller="MainCtrl">
+    <!-- <ng-server-select></ng-server-select> -->
+    <div ng-include="'partials/login.html'"></div>
+    <div ui-view></div>
+
+    <div ng-include="'partials/appList.html'"></div>
+    <div ng-include="'partials/footer.html'"></div>
+
+    <!-- inject-vendor:js -->
+    <script src="vendor.min-f49cc0b1.js"></script>
+    <!-- endinject -->
+
+    <!-- inject-app:js -->
+    <script src="app.min-c0572eeb.js"></script>
+    <!-- endinject -->
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<div ng-init="InitPage()">
+
+
+
+    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+    <section class="menu container">
+        <div ng-dog-loader ng-show="showLoader"></div>
+        <nav class="row">
+            <ul class="list-unstyled">
+                <li class="col-md-4 col-sm-12" ng-repeat="item in MenuItems">
+                    <a class="btn btn-block btn-inverse clearfix" href="{{item.Url}}" target="_blank">
+                        <i class="fa fa-{{item.Icon}} fa-3x pull-left"></i>
+                        <div class="menuText">
+                            {{item.Title}} <br/>
+                            <small>{{item.SubTitle}}</small>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+</div>
+
+

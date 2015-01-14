@@ -1,0 +1,16 @@
+{
+  "name": "distgroupgulp",
+  "app": "./app/",
+  "html": "./app/**/*.html",
+  "htmltemplates": "./app/**/**/*.html",
+  "js": "./app/**/**/*.min.js",
+  "vendorjs": "./app/libs/**/*.min.js",
+  "vendorcss": "./app/libs/**/*.min.css",
+  "css": "./app/css/*.css",
+  "build": "./build/",
+  "fonts": [
+    "./app/libs/font-awesome/fonts/**/*",
+    "./app/libs/webfont-opensans/**/*"
+  ],
+  "images": "./app/images/**/*"
+}
