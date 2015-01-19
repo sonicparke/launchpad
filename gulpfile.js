@@ -105,12 +105,13 @@ gulp.task('js', ['templatecache'], function(){
 
 ///////////////////////////////////////////
 //
-// Cacatenate & minify vendor js files
+// Concatenate & minify vendor js files
 //
 ///////////////////////////////////////////
 gulp.task('vendorjs', function(){
     return gulp
-        .src(['app/libs/**/*.js', '!app/libs/**/*.min.js'])
+        //.src(['app/libs/**/*.js', '!app/libs/**/*.min.js'])
+        .src(paths.vendorjs)
         .pipe(plug.concat('vendor.min.js'))
         .pipe(plug.ngAnnotate({
             remove: true,
@@ -125,7 +126,7 @@ gulp.task('vendorjs', function(){
 
 ///////////////////////////////////////////
 //
-// Cacatenate & minify app specific css files
+// Concatenate & minify app specific css files
 //
 ///////////////////////////////////////////
 gulp.task('css', function() {
@@ -143,7 +144,7 @@ gulp.task('css', function() {
 
 ///////////////////////////////////////////
 //
-// Cacatenate & minify vendor css files
+// Concatenate & minify vendor css files
 //
 ///////////////////////////////////////////
 gulp.task('vendorcss', function() {

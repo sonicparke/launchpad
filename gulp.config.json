@@ -3,10 +3,30 @@
   "app": "./app/",
   "html": "./app/**/*.html",
   "htmltemplates": "./app/**/**/*.html",
-  "js": "./app/**/**/*.min.js",
-  "vendorjs": "./app/libs/**/*.min.js",
-  "vendorcss": "./app/libs/**/*.min.css",
-  "css": "./app/css/*.css",
+  "js":[
+    "./app/js/app.js",
+    "./app/js/controllers/MainCtrl.js",
+    "./app/js/controllers/AppListViewCtrl.js",
+    "./app/js/controllers/LoginViewCtrl.js",
+    "./app/js/directives/alert-inline.js",
+    "./app/js/directives/alert.js",
+    "./app/js/directives/loader.js",
+    "./app/js/directives/server-select.js",
+    "./app/js/services/GetMenuItems.js"
+  ],
+  "vendorjs": [
+    "./app/libs/angular/angular.min.js",
+    "./app/libs/angular-ui-router/release/angular-ui-router.min.js",
+    "./app/libs/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js",
+    "./app/libs/lodash/dist/lodash.min.js",
+    "./app/libs/restangular/dist/restangular.min.js"
+  ],
+  "vendorcss": [
+    "./app/libs/webfont-opensans/stylesheet.css",
+    "./app/libs/font-awesome/css/font-awesome.min.css",
+    "./app/libs/bootstrap/dist/css/bootstrap.min.css"
+  ],
+  "css": "./app/css/style.css",
   "build": "./build/",
   "fonts": [
     "./app/libs/font-awesome/fonts/**/*",

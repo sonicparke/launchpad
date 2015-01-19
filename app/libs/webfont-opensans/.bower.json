@@ -18,11 +18,11 @@
     "tests"
   ],
   "homepage": "https://github.com/sonicparke/webfont-opensans",
-  "_release": "98cb25ef74",
+  "_release": "4ac95df4f1",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "98cb25ef74dad5ad1683b917ad22cd8a9356be51"
+    "commit": "4ac95df4f1daa70f5a6de408845b48dfd55b2aba"
   },
   "_source": "git://github.com/sonicparke/webfont-opensans.git",
   "_target": "*",

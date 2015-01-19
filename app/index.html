@@ -23,7 +23,7 @@
     <title>AXC Launch Pad Dev</title>
 </head>
 <body ng-controller="MainCtrl">
-    <!-- <ng-server-select></ng-server-select> -->
+     <ng-server-select></ng-server-select>
     <div ng-include="'partials/login.html'"></div>
     <div ui-view></div>
 
@@ -31,11 +31,11 @@
     <div ng-include="'partials/footer.html'"></div>
 
     <!-- inject-vendor:js -->
-    <script src="libs/angular/angular.js"></script>
-    <script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="libs/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
-    <script src="libs/lodash/dist/lodash.js"></script>
-    <script src="libs/restangular/dist/restangular.js"></script>
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="libs/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
+    <script src="libs/lodash/dist/lodash.min.js"></script>
+    <script src="libs/restangular/dist/restangular.min.js"></script>
     <!-- endinject -->
 
     <!-- inject-app:js -->
@@ -47,7 +47,8 @@
     <script src="js/directives/alert.js"></script>
     <script src="js/directives/loader.js"></script>
     <script src="js/directives/server-select.js"></script>
-    <script src="js/services/GetMenuItems.js"></script>
+    <script src="js/services/AppSecurity.js"></script>
+     <script src="js/services/DataService.js"></script>
 
     <!-- endinject -->
 

@@ -1,19 +1,19 @@
-<div ng-controller="LoginViewCtrl" ng-init="InitPage()" class="container">
+<div ng-controller="Login as vm" ng-init="InitPage()" class="container">
 
 <h1>Login</h1>
 
 
-<form ng-submit="SignIn()" class="form-horizontal" role="form">
+<form ng-submit="vm.Login()" class="form-horizontal" role="form">
     <div class="form-group">
         <label for="inputUsername" class="control-label sr-only">Username</label>
         <div class="col-md-12 col-sm-12">
-            <input ng-model="login.username" name="name" type="text" class="form-control" id="inputName" placeholder="Name">
+            <input ng-model="vm.login.UserName" name="name" type="text" class="form-control" id="inputName" placeholder="Name">
         </div>
     </div>
     <div class="form-group">
         <label for="inputPassword" class="control-label sr-only">Password</label>
         <div class="col-md-12 col-sm-12">
-            <input ng-model="login.password" name="password" type="text" class="form-control" id="inputEmail" placeholder="Password">
+            <input ng-model="vm.login.Password" name="password" type="password" class="form-control" id="inputEmail" placeholder="Password">
         </div>
     </div>
     <div class="form-group">

@@ -1,4 +1,4 @@
-app.controller('MainCtrl', function ($scope, $location, $http,  $timeout, GetMenuItems){
+app.controller('MainCtrl', function ($scope){
 
     $scope.PageTitle = "AXC Launch Pad";
 
