@@ -55,8 +55,8 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
         .pipe(indexFilter) // filter to index.html
         .pipe(inject('css/vendor.min.css', 'inject-vendor'))
         .pipe(inject('css/app.min.css', 'inject-app'))
-        .pipe(inject('vendor.min.js', 'inject-vendor'))
-        .pipe(inject('app.min.js', 'inject-app'))
+        .pipe(inject('js/vendor.min.js', 'inject-vendor'))
+        .pipe(inject('js/app.min.js', 'inject-app'))
         .pipe(gulp.dest(paths.build)) // write the rev files
         .pipe(indexFilter.restore()) // remove filter, back to original stream
 
@@ -100,7 +100,7 @@ gulp.task('js', ['templatecache'], function(){
         //.pipe(plug.uglify({
         //    mangle: true
         //}))
-        .pipe(gulp.dest(paths.build))
+        .pipe(gulp.dest(paths.build + 'js/'))
 });
 
 ///////////////////////////////////////////
@@ -121,7 +121,7 @@ gulp.task('vendorjs', function(){
         //.pipe(plug.uglify({
         //    mangle: true
         //}))
-        .pipe(gulp.dest(paths.build))
+        .pipe(gulp.dest(paths.build + 'js/'))
 });
 
 ///////////////////////////////////////////
