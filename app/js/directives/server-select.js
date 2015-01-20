@@ -33,6 +33,8 @@ app.directive('ngServerSelect', function () {
     restrict: 'E,A',
     replace: true,
     controller: function($scope, ServerAPI, DBData){
+        var Server;
+        var API;
 
       $scope.showServerSelect = false;
 

@@ -35,7 +35,7 @@ gulp.task('build', ['rev-and-inject', 'fonts', 'images'], function(){
 // Of the dev file links
 //
 ///////////////////////////////////////////
-gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
+gulp.task('rev-and-inject', ['nocat-js', 'js', 'vendorjs', 'css', 'vendorcss'], function() {
     log('Rev\'ing files and building index.html');
 
     var minified = paths.build + '**/*.min.*';
@@ -55,8 +55,13 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
         .pipe(indexFilter) // filter to index.html
         .pipe(inject('css/vendor.min.css', 'inject-vendor'))
         .pipe(inject('css/app.min.css', 'inject-app'))
-        .pipe(inject('js/vendor.min.js', 'inject-vendor'))
         .pipe(inject('js/app.min.js', 'inject-app'))
+        .pipe(inject('js/angular.min.js', 'inject-ng'))
+        .pipe(inject('js/angular-ui-router.min.js', 'inject-uirouter'))
+        .pipe(inject('js/ui-bootstrap-tpls.min.js', 'inject-bs'))
+        .pipe(inject('js/lodash.min.js', 'inject-lodash'))
+        .pipe(inject('js/restangular.min.js', 'inject-rest'))
+        //.pipe(inject('js/vendor.min.js', 'inject-vendor'))
         .pipe(gulp.dest(paths.build)) // write the rev files
         .pipe(indexFilter.restore()) // remove filter, back to original stream
 
@@ -85,10 +90,24 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
 
 ///////////////////////////////////////////
 //
+// Copy Vendor js files
+//
+///////////////////////////////////////////
+gulp.task('nocat-js', function(){
+    return gulp
+        .src(paths.nocatjs)
+        .pipe(gulp.dest(paths.build + 'js/'));
+});
+
+
+///////////////////////////////////////////
+//
 // Cacatenate & minify app specific js files
 //
 ///////////////////////////////////////////
 gulp.task('js', ['templatecache'], function(){
+
+    //var source = [].concat(paths.js, paths.build + 'templates.js');
     return gulp
         .src(['app/**/*.js', '!app/**/*.min.js', '!app/libs/**/*.js'])
         .pipe(plug.concat('app.min.js'))
@@ -210,10 +229,9 @@ gulp.task('templatecache', function() {
         }))
         .pipe(plug.angularTemplatecache('templates.js', {
             module: 'app.core',
-            standalone: false,
-            root: 'app/'
+            standalone: false
         }))
-        .pipe(gulp.dest(paths.build));
+        .pipe(gulp.dest(paths.build + 'js/'));
 });
 
 ///////////////////////////////////////////

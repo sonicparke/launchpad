@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('LaunchPad', ['restangular', 'ui.bootstrap', 'loader', 'ui.router']);
+var app = angular.module('LaunchPad', ['restangular', 'ui.bootstrap', 'loader', 'ui.router', 'app.core']);
 
 
 app.config(['$stateProvider', '$provide', '$httpProvider', '$tooltipProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $provide, $httpProvider, $tooltipProvider, $urlRouterProvider, $locationProvider){
@@ -13,7 +13,7 @@ app.config(['$stateProvider', '$provide', '$httpProvider', '$tooltipProvider', '
   $stateProvider
   .state('/', {
       url: '/',
-      templateUrl: 'partials/appList.html',
+      templateUrl: 'app/partials/appList.html',
       controller: 'AppListViewCtrl'
   });
   // .state('login', {
@@ -26,7 +26,7 @@ app.config(['$stateProvider', '$provide', '$httpProvider', '$tooltipProvider', '
   $tooltipProvider.options( {appendToBody: true} );
 }]);
 
-
+angular.module('app.core', []);
 
 
 // app.run(['$rootScope', '$state', 'JobInputService', 'AuthService', function ($rootScope, $state, JobInputService, AuthService) {

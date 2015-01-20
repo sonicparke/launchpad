@@ -24,19 +24,33 @@
 </head>
 <body ng-controller="MainCtrl">
      <ng-server-select></ng-server-select>
-    <div ng-include="'partials/login.html'"></div>
+    <div ng-include="'app/partials/login.html'"></div>
     <div ui-view></div>
 
-    <div ng-include="'partials/appList.html'"></div>
-    <div ng-include="'partials/footer.html'"></div>
+    <!--<div ng-include="'app/partials/appList.html'"></div>-->
+    <div ng-include="'app/partials/footer.html'"></div>
 
-    <!-- inject-vendor:js -->
-    <script src="libs/angular/angular.min.js"></script>
-    <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="libs/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
-    <script src="libs/lodash/dist/lodash.min.js"></script>
-    <script src="libs/restangular/dist/restangular.min.js"></script>
-    <!-- endinject -->
+     <!-- inject-ng:js -->
+     <script src="libs/angular/angular.min.js"></script>
+     <!-- endinject -->
+
+     <!-- inject-uirouter:js -->
+     <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+     <!-- endinject -->
+
+     <!-- inject-bs:js -->
+     <script src="libs/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
+     <!-- endinject -->
+
+     <!-- inject-lodash:js -->
+     <script src="libs/lodash/dist/lodash.min.js"></script>
+     <!-- endinject -->
+
+     <!-- inject-rest:js -->
+     <script src="libs/restangular/dist/restangular.min.js"></script>
+     <!-- endinject -->
+
+
 
     <!-- inject-app:js -->
     <script src="js/app.js"></script>

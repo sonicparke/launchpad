@@ -22,18 +22,36 @@
 </head>
 <body ng-controller="MainCtrl">
      <ng-server-select></ng-server-select>
-    <div ng-include="'partials/login.html'"></div>
+    <div ng-include="'app/partials/login.html'"></div>
     <div ui-view></div>
 
-    <div ng-include="'partials/appList.html'"></div>
-    <div ng-include="'partials/footer.html'"></div>
+    <!--<div ng-include="'app/partials/appList.html'"></div>-->
+    <div ng-include="'app/partials/footer.html'"></div>
 
-    <!-- inject-vendor:js -->
-    <script src="js/vendor.min-c7f8e789.js"></script>
-    <!-- endinject -->
+     <!-- inject-ng:js -->
+     <script src="js/angular.min-44633ce2.js"></script>
+     <!-- endinject -->
+
+     <!-- inject-uirouter:js -->
+     <script src="js/angular-ui-router.min-83f32131.js"></script>
+     <!-- endinject -->
+
+     <!-- inject-bs:js -->
+     <script src="js/ui-bootstrap-tpls.min-15c42fe2.js"></script>
+     <!-- endinject -->
+
+     <!-- inject-lodash:js -->
+     <script src="js/lodash.min-58e3df17.js"></script>
+     <!-- endinject -->
+
+     <!-- inject-rest:js -->
+     <script src="js/restangular.min-a54bc1ed.js"></script>
+     <!-- endinject -->
+
+
 
     <!-- inject-app:js -->
-    <script src="js/app.min-a3723516.js"></script>
+    <script src="js/app.min-98119cc3.js"></script>
     <!-- endinject -->
 
 </body>
