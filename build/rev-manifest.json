@@ -1,10 +1,10 @@
 {
-  "css/app.min.css": "css/app.min-dc92f34f.css",
-  "css/vendor.min.css": "css/vendor.min-4cca65de.css",
   "js/angular-ui-router.min.js": "js/angular-ui-router.min-83f32131.js",
   "js/angular.min.js": "js/angular.min-44633ce2.js",
   "js/app.min.js": "js/app.min-98119cc3.js",
   "js/lodash.min.js": "js/lodash.min-58e3df17.js",
   "js/restangular.min.js": "js/restangular.min-a54bc1ed.js",
-  "js/ui-bootstrap-tpls.min.js": "js/ui-bootstrap-tpls.min-15c42fe2.js"
+  "js/ui-bootstrap-tpls.min.js": "js/ui-bootstrap-tpls.min-15c42fe2.js",
+  "css/app.min.css": "css/app.min-dc92f34f.css",
+  "css/vendor.min.css": "css/vendor.min-4cca65de.css"
 }
