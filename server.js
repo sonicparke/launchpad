@@ -20,7 +20,7 @@ app.get('*', function(req, res){
 //        break;
 //    default:
 //        console.log('** DEV **');
-//        console.log('serving from ' + './src/client/ and ./');
+//        console.log('serving from ' + './app/');
 //        app.use('/', express.static('./app'));
 //        break;
 //}
