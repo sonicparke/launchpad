@@ -8,6 +8,10 @@ var app = express();
 //app.use('/', express.static('./app'));
 app.use('/', express.static('./build/'));
 
+app.set('views', __dirname + '/build');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
 app.get('*', function(req, res){
     res.render('index.html');
 })

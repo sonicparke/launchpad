@@ -4,6 +4,7 @@
   "description": "LaunchPad with Auth",
   "author": "Brad McAlister",
   "dependencies": {
+    "ejs": "^2.2.1",
     "express": "^4.11.1"
   },
   "devDependencies": {
