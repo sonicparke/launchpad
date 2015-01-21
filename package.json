@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "LaunchPad with Auth",
   "author": "Brad McAlister",
+  "dependencies": {
+    "express": "^4.11.1",
+  },
   "devDependencies": {
     "bower": "",
     "del": "^0.1.3",
