@@ -13,9 +13,9 @@ gulp.task('help', plug.taskListing);
 // Delete the build folder then build again
 //
 ///////////////////////////////////////////
-gulp.task('clean-build', function(){
-    runSequence('clean', 'build');
-})
+//gulp.task('clean-build', function(){
+//    runSequence('clean', 'build');
+//})
 
 
 ///////////////////////////////////////////
@@ -23,9 +23,12 @@ gulp.task('clean-build', function(){
 // Build
 //
 ///////////////////////////////////////////
-gulp.task('build', ['rev-and-inject', 'fonts', 'images'], function(){
-    log('building')
-});
+gulp.task('build', function(){
+    runSequence('clean', 'rev-and-inject', 'fonts', 'images');
+})
+//gulp.task('build', ['rev-and-inject', 'fonts', 'images'], function(){
+//    log('building')
+//});
 
 ///////////////////////////////////////////
 //
