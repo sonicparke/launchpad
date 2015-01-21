@@ -1,30 +1,29 @@
 {
   "name": "distgroupgulp",
   "app": "./app/",
-  "html": "./app/**/*.html",
-  "htmltemplates": "./app/**/**/*.html",
+  "html": "./app/index.html",
+  "htmltemplates": "./app/partials/**/*.html",
   "js":[
     "./app/js/app.js",
     "./app/js/controllers/MainCtrl.js",
     "./app/js/controllers/AppListViewCtrl.js",
     "./app/js/controllers/LoginViewCtrl.js",
-    "./app/js/directives/alert-inline.js",
-    "./app/js/directives/alert.js",
     "./app/js/directives/loader.js",
-    "./app/js/directives/server-select.js",
-    "./app/js/services/GetMenuItems.js"
+    "./app/js/services/AppSecurity.js",
+    "./app/js/services/DataService.js"
+
   ],
   "vendorjs": [
-
+    "./app/libs/angular/angular.js"
 
 
   ],
   "nocatjs": [
-    "./app/libs/angular/angular.min.js",
-    "./app/libs/angular-ui-router/release/angular-ui-router.min.js",
-    "./app/libs/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js",
-    "./app/libs/lodash/dist/lodash.min.js",
-    "./app/libs/restangular/dist/restangular.min.js"
+
+    "./app/libs/angular-ui-router/release/angular-ui-router.js",
+    "./app/libs/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js",
+    "./app/libs/lodash/dist/lodash.js",
+    "./app/libs/restangular/dist/restangular.js"
 
   ],
   "vendorcss": [

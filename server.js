@@ -5,8 +5,8 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var app = express();
 
 
-app.use('/', express.static('./app'));
-//app.use('/', express.static('./build/'));
+//app.use('/', express.static('./app'));
+app.use('/', express.static('./build/'));
 
 app.get('*', function(req, res){
     res.render('index.html');

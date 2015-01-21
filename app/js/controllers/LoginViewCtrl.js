@@ -3,11 +3,6 @@ app.controller('Login', function (DataService){
     
     vm.Login = Login;
 
-    // Initial Functions
-    //$scope.InitPage = function() {
-    //    console.log('login works');
-    //};
-
     function Login() {
         console.log('vm.login :', vm.login);
         return DataService.Login(vm.login).then(function(res){

@@ -5,14 +5,14 @@ var app = angular.module('LaunchPad', ['restangular', 'ui.bootstrap', 'loader', 
 
 app.config(['$stateProvider', '$provide', '$httpProvider', '$tooltipProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $provide, $httpProvider, $tooltipProvider, $urlRouterProvider, $locationProvider){
 
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 
   $stateProvider
-  .state('/', {
-      url: '/',
+  .state('applist', {
+      url: '/applist',
       templateUrl: 'app/partials/appList.html',
       controller: 'AppListViewCtrl'
   });
@@ -22,23 +22,9 @@ app.config(['$stateProvider', '$provide', '$httpProvider', '$tooltipProvider', '
   //     controller: 'LoginViewCtrl'
   // });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('applist');
   $tooltipProvider.options( {appendToBody: true} );
 }]);
 
 angular.module('app.core', []);
 
-
-// app.run(['$rootScope', '$state', 'JobInputService', 'AuthService', function ($rootScope, $state, JobInputService, AuthService) {
-//     // Run when route changes
-//     $rootScope.$on("$stateChangeStart", function(event, curr, prev){
-//       var job = JobInputService.CurrentJobData();
-//       // Check .state config to determine if authentication is needed
-//       // and if so check if User is authenticated
-//       if (curr.checkForJob && angular.isUndefined(job)) {
-//         // User isn’t authenticated
-//         $state.go('/');
-//         event.preventDefault();
-//       }
-//     });
-//   }]);

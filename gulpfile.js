@@ -50,7 +50,7 @@ gulp.task('rev-and-inject', ['nocat-js', 'js', 'vendorjs', 'css', 'vendorcss'], 
         // Write the revisioned files
         .src([].concat(minified, index)) // add all built min files and index.html
         .pipe(minFilter) // filter the stream to minified css and js
-        .pipe(plug.rev()) // create files with rev's
+        //.pipe(plug.rev()) // create files with rev's
         .pipe(gulp.dest(paths.build)) // write the rev files
         .pipe(minFilter.restore()) // remove filter, back to original stream
 
@@ -59,17 +59,17 @@ gulp.task('rev-and-inject', ['nocat-js', 'js', 'vendorjs', 'css', 'vendorcss'], 
         .pipe(inject('css/vendor.min.css', 'inject-vendor'))
         .pipe(inject('css/app.min.css', 'inject-app'))
         .pipe(inject('js/app.min.js', 'inject-app'))
-        .pipe(inject('js/angular.min.js', 'inject-ng'))
-        .pipe(inject('js/angular-ui-router.min.js', 'inject-uirouter'))
-        .pipe(inject('js/ui-bootstrap-tpls.min.js', 'inject-bs'))
-        .pipe(inject('js/lodash.min.js', 'inject-lodash'))
-        .pipe(inject('js/restangular.min.js', 'inject-rest'))
-        //.pipe(inject('js/vendor.min.js', 'inject-vendor'))
+        //.pipe(inject('js/angular.min.js', 'inject-ng'))
+        .pipe(inject('js/angular-ui-router.js', 'inject-uirouter'))
+        .pipe(inject('js/ui-bootstrap-tpls.js', 'inject-bs'))
+        .pipe(inject('js/lodash.js', 'inject-lodash'))
+        .pipe(inject('js/restangular.js', 'inject-rest'))
+        .pipe(inject('js/vendor.min.js', 'inject-vendor'))
         .pipe(gulp.dest(paths.build)) // write the rev files
         .pipe(indexFilter.restore()) // remove filter, back to original stream
 
         // replace the files referenced in index.html with the rev'd files
-        .pipe(plug.revReplace()) // Substitute in new filenames
+        //.pipe(plug.revReplace()) // Substitute in new filenames
         .pipe(gulp.dest(paths.build)) // write the index.html file changes
         .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
         .pipe(gulp.dest(paths.build)); // write the manifest
@@ -110,18 +110,18 @@ gulp.task('nocat-js', function(){
 ///////////////////////////////////////////
 gulp.task('js', ['templatecache'], function(){
 
-    //var source = [].concat(paths.js, paths.build + 'templates.js');
+    var source = [].concat(paths.js, paths.build + 'js/templates.js');
     return gulp
-        .src(['app/**/*.js', '!app/**/*.min.js', '!app/libs/**/*.js'])
+        .src(source)
         .pipe(plug.concat('app.min.js'))
         .pipe(plug.ngAnnotate({
             remove: true,
             add: true,
             single_quotes: true
         }))
-        //.pipe(plug.uglify({
-        //    mangle: true
-        //}))
+        .pipe(plug.uglify({
+            mangle: true
+        }))
         .pipe(gulp.dest(paths.build + 'js/'))
 });
 
@@ -224,7 +224,7 @@ gulp.task('fonts', function() {
  */
 gulp.task('templatecache', function() {
     log('Creating an AngularJS $templateCache');
-
+    //var source = [].concat(paths.js, paths.build + 'js/templates.js');
     return gulp
         .src(paths.htmltemplates)
         .pipe(plug.minifyHtml({
@@ -233,7 +233,7 @@ gulp.task('templatecache', function() {
         .pipe(plug.angularTemplatecache('templates.js', {
             module: 'app.core',
             standalone: false,
-            root: 'app/'
+            root: 'app/partials/'
         }))
         .pipe(gulp.dest(paths.build + 'js/'));
 });

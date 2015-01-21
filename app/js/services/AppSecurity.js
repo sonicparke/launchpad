@@ -1,9 +1,9 @@
 //////// Get Data //////////
 
 // Restangular services
-app.service('AppSecurity', function(Restangular, ServerAPI) {
+app.service('AppSecurity', function(Restangular) {
 
-      var BaseUrl = 'http://' + ServerAPI.GetServer().Name + '/appsecuritywebapi' + ServerAPI.GetAPI().Name + '/api';
+      var BaseUrl = 'http://myapi';
 
       return Restangular.withConfig(function(RestangularConfigurer) {
         RestangularConfigurer.setBaseUrl(BaseUrl);
