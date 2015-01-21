@@ -94,10 +94,132 @@ app.controller('MainCtrl', ['$scope', function ($scope){
     };
 
 }]);
+//////// Get Data //////////
+
+// Restangular services
+app.service('AppSecurity', ['Restangular', 'ServerAPI', function(Restangular, ServerAPI) {
+
+      var BaseUrl = 'http://' + ServerAPI.GetServer().Name + '/appsecuritywebapi' + ServerAPI.GetAPI().Name + '/api';
+
+      return Restangular.withConfig(function(RestangularConfigurer) {
+        RestangularConfigurer.setBaseUrl(BaseUrl);
+      });
+
+}]);
+(function(){
+    app.factory('DataService', DataService);
+
+    function DataService($q, AppSecurity){
+
+        var service = {
+            Login: Login,
+            GetMenuItems: GetMenuItems
+
+        };
+
+        return service;
+
+        function Login(data) {
+            var deferred = $q.defer();
+            var params = data;
+            var results = AppSecurity.all('login').post(params).then(function(result){
+                deferred.resolve(result);
+            });
+            return deferred.promise;
+        };
+
+        function GetMenuItems(data) {
+            var deferred = $q.defer();
+            var params = { UserName: data };
+            var results = AppSecurity.all('menuitems').getList(params).then(function(result){
+                deferred.resolve(result);
+            });
+            return deferred.promise;
+        };
+
+
+
+    }
+    DataService.$inject = ['$q', 'AppSecurity'];;
+
+
+})();
+app.service('AppSecurityWebAPI', ['Restangular', 'ServerAPI', function(Restangular, ServerAPI) {
+
+      return Restangular.withConfig(function(RestangularConfigurer) {
+        RestangularConfigurer.setBaseUrl('http://axcapps.harsco.com/appsecuritywebapi/api/');
+      });
+
+}]);
+app.factory('AuthService', ['$q', 'AppSecurityWebAPI', 'User', function($q, AppSecurityWebAPI, User) {
+    var groups;
+
+    var _GetGroups = function(data) {
+        var self = this;
+        var UserID = User;
+        var deferred = $q.defer();
+        var AuthData = { AppName: 'HammcoJobListing', UserName: UserID};
+        var results = AppSecurityWebAPI.one('Groups').get(AuthData).then(function(result){
+            groups = [];
+            angular.forEach(result, function(value, key){
+                groups.push(value.Role);
+            });
+            deferred.resolve(groups);
+        });
+        return deferred.promise;
+    };
+
+    var _IsAdmin = function() {
+        var deferred = $q.defer();
+        var UserID = User;
+        var AuthData = { AppName: 'HammcoJobListing', UserName: UserID};
+        var self = this;
+        var isAdmin;
+        if(groups) {
+            isAdmin = _.contains(groups, 'Admin');
+            return $q.when(isAdmin);
+        } else {
+            return _GetGroups(AuthData).then(function(result){
+                isAdmin = _.contains(result, 'Admin');
+                return isAdmin;
+            });
+        }
+
+    };
+
+    var _JobInput = function() {
+        var deferred = $q.defer();
+        var UserID = User;
+        var AuthData = { AppName: 'HammcoJobListing', UserName: UserID};
+        var self = this;
+        var jobInput;
+        if(groups) {
+            jobInput = _.contains(groups, 'JobInput');
+            return $q.when(jobInput);
+        } else {
+            return _GetGroups(AuthData).then(function(result){
+                jobInput = _.contains(result, 'JobInput');
+                return jobInput;
+            });
+        }
+
+    };
+
+    var _test = function(){
+        return 'hello'
+    }
+
+    return {
+        IsAdmin: _IsAdmin,
+        GetGroups: _GetGroups,
+        JobInput: _JobInput,
+        Test: _test
+    };
+}]);
 angular.module("ui.bootstrap.alertInline", []).directive('alertInline', ['$timeout', function ($timeout) {
   return {
     restrict:'EA',
-    templateUrl: 'partials/InlineAlertTemplate.html',
+    templateUrl: 'app/partials/InlineAlertTemplate.html',
     transclude:true,
     scope:{
       type:'=',
@@ -145,7 +267,7 @@ angular.module("ui.bootstrap.alertInline", []).directive('alertInline', ['$timeo
 angular.module("ui.bootstrap.alert", []).directive('alert', ['$timeout', function ($timeout) {
   return {
     restrict:'EA',
-    templateUrl: 'partials/standardalerttemplate.html',
+    templateUrl: 'app/partials/StandardAlertTemplate.html',
     transclude:true,
     scope:{
       type:'=',
@@ -426,125 +548,3 @@ app.factory('ServerAPI', function() {
         GetAllData: _GetAllData
       };
     }]);
-//////// Get Data //////////
-
-// Restangular services
-app.service('AppSecurity', ['Restangular', 'ServerAPI', function(Restangular, ServerAPI) {
-
-      var BaseUrl = 'http://' + ServerAPI.GetServer().Name + '/appsecuritywebapi' + ServerAPI.GetAPI().Name + '/api';
-
-      return Restangular.withConfig(function(RestangularConfigurer) {
-        RestangularConfigurer.setBaseUrl(BaseUrl);
-      });
-
-}]);
-(function(){
-    app.factory('DataService', DataService);
-
-    function DataService($q, AppSecurity){
-
-        var service = {
-            Login: Login,
-            GetMenuItems: GetMenuItems
-
-        };
-
-        return service;
-
-        function Login(data) {
-            var deferred = $q.defer();
-            var params = data;
-            var results = AppSecurity.all('login').post(params).then(function(result){
-                deferred.resolve(result);
-            });
-            return deferred.promise;
-        };
-
-        function GetMenuItems(data) {
-            var deferred = $q.defer();
-            var params = { UserName: data };
-            var results = AppSecurity.all('menuitems').getList(params).then(function(result){
-                deferred.resolve(result);
-            });
-            return deferred.promise;
-        };
-
-
-
-    }
-    DataService.$inject = ['$q', 'AppSecurity'];;
-
-
-})();
-app.service('AppSecurityWebAPI', ['Restangular', 'ServerAPI', function(Restangular, ServerAPI) {
-
-      return Restangular.withConfig(function(RestangularConfigurer) {
-        RestangularConfigurer.setBaseUrl('http://axcapps.harsco.com/appsecuritywebapi/api/');
-      });
-
-}]);
-app.factory('AuthService', ['$q', 'AppSecurityWebAPI', 'User', function($q, AppSecurityWebAPI, User) {
-    var groups;
-
-    var _GetGroups = function(data) {
-        var self = this;
-        var UserID = User;
-        var deferred = $q.defer();
-        var AuthData = { AppName: 'HammcoJobListing', UserName: UserID};
-        var results = AppSecurityWebAPI.one('Groups').get(AuthData).then(function(result){
-            groups = [];
-            angular.forEach(result, function(value, key){
-                groups.push(value.Role);
-            });
-            deferred.resolve(groups);
-        });
-        return deferred.promise;
-    };
-
-    var _IsAdmin = function() {
-        var deferred = $q.defer();
-        var UserID = User;
-        var AuthData = { AppName: 'HammcoJobListing', UserName: UserID};
-        var self = this;
-        var isAdmin;
-        if(groups) {
-            isAdmin = _.contains(groups, 'Admin');
-            return $q.when(isAdmin);
-        } else {
-            return _GetGroups(AuthData).then(function(result){
-                isAdmin = _.contains(result, 'Admin');
-                return isAdmin;
-            });
-        }
-
-    };
-
-    var _JobInput = function() {
-        var deferred = $q.defer();
-        var UserID = User;
-        var AuthData = { AppName: 'HammcoJobListing', UserName: UserID};
-        var self = this;
-        var jobInput;
-        if(groups) {
-            jobInput = _.contains(groups, 'JobInput');
-            return $q.when(jobInput);
-        } else {
-            return _GetGroups(AuthData).then(function(result){
-                jobInput = _.contains(result, 'JobInput');
-                return jobInput;
-            });
-        }
-
-    };
-
-    var _test = function(){
-        return 'hello'
-    }
-
-    return {
-        IsAdmin: _IsAdmin,
-        GetGroups: _GetGroups,
-        JobInput: _JobInput,
-        Test: _test
-    };
-}]);

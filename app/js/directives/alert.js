@@ -1,7 +1,7 @@
 angular.module("ui.bootstrap.alert", []).directive('alert', function ($timeout) {
   return {
     restrict:'EA',
-    templateUrl: 'partials/standardalerttemplate.html',
+    templateUrl: 'app/partials/StandardAlertTemplate.html',
     transclude:true,
     scope:{
       type:'=',

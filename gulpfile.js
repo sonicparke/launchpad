@@ -232,7 +232,8 @@ gulp.task('templatecache', function() {
         }))
         .pipe(plug.angularTemplatecache('templates.js', {
             module: 'app.core',
-            standalone: false
+            standalone: false,
+            root: 'app/'
         }))
         .pipe(gulp.dest(paths.build + 'js/'));
 });

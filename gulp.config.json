@@ -36,7 +36,7 @@
   "build": "./build/",
   "fonts": [
     "./app/libs/font-awesome/fonts/**/*",
-    "./app/libs/webfont-opensans/**/*"
+    "./app/libs/webfont-opensans/fonts/**/*"
   ],
   "images": "./app/images/**/*"
 }

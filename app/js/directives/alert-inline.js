@@ -1,7 +1,7 @@
 angular.module("ui.bootstrap.alertInline", []).directive('alertInline', function ($timeout) {
   return {
     restrict:'EA',
-    templateUrl: 'partials/InlineAlertTemplate.html',
+    templateUrl: 'app/partials/InlineAlertTemplate.html',
     transclude:true,
     scope:{
       type:'=',
