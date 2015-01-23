@@ -14,16 +14,11 @@
 
   ],
   "vendorjs": [
-    "./app/libs/angular/angular.js"
-
-
-  ],
-  "nocatjs": [
-
-    "./app/libs/angular-ui-router/release/angular-ui-router.js",
-    "./app/libs/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js",
-    "./app/libs/lodash/dist/lodash.js",
-    "./app/libs/restangular/dist/restangular.js"
+    "./app/libs/angular/angular.min.js",
+    "./app/libs/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js",
+    "./app/libs/lodash/dist/lodash.min.js",
+    "./app/libs/restangular/dist/restangular.min.js",
+    "./app/libs/angular-ui-router/release/angular-ui-router.js"
 
   ],
   "vendorcss": [

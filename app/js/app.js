@@ -27,4 +27,3 @@ app.config(['$stateProvider', '$provide', '$httpProvider', '$tooltipProvider', '
 }]);
 
 angular.module('app.core', []);
-

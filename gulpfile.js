@@ -8,27 +8,17 @@ var del = require('del');
 
 gulp.task('help', plug.taskListing);
 
+
+
 ///////////////////////////////////////////
 //
 // Delete the build folder then build again
 //
 ///////////////////////////////////////////
-//gulp.task('clean-build', function(){
-//    runSequence('clean', 'build');
-//})
-
-
-///////////////////////////////////////////
-//
-// Build
-//
-///////////////////////////////////////////
 gulp.task('build', function(){
     runSequence('clean', 'rev-and-inject', 'fonts', 'images');
 })
-//gulp.task('build', ['rev-and-inject', 'fonts', 'images'], function(){
-//    log('building')
-//});
+
 
 ///////////////////////////////////////////
 //
@@ -50,7 +40,7 @@ gulp.task('rev-and-inject', ['nocat-js', 'js', 'vendorjs', 'css', 'vendorcss'], 
         // Write the revisioned files
         .src([].concat(minified, index)) // add all built min files and index.html
         .pipe(minFilter) // filter the stream to minified css and js
-        //.pipe(plug.rev()) // create files with rev's
+        .pipe(plug.rev()) // create files with rev's
         .pipe(gulp.dest(paths.build)) // write the rev files
         .pipe(minFilter.restore()) // remove filter, back to original stream
 
@@ -59,17 +49,12 @@ gulp.task('rev-and-inject', ['nocat-js', 'js', 'vendorjs', 'css', 'vendorcss'], 
         .pipe(inject('css/vendor.min.css', 'inject-vendor'))
         .pipe(inject('css/app.min.css', 'inject-app'))
         .pipe(inject('js/app.min.js', 'inject-app'))
-        //.pipe(inject('js/angular.min.js', 'inject-ng'))
-        .pipe(inject('js/angular-ui-router.js', 'inject-uirouter'))
-        .pipe(inject('js/ui-bootstrap-tpls.js', 'inject-bs'))
-        .pipe(inject('js/lodash.js', 'inject-lodash'))
-        .pipe(inject('js/restangular.js', 'inject-rest'))
         .pipe(inject('js/vendor.min.js', 'inject-vendor'))
         .pipe(gulp.dest(paths.build)) // write the rev files
         .pipe(indexFilter.restore()) // remove filter, back to original stream
 
         // replace the files referenced in index.html with the rev'd files
-        //.pipe(plug.revReplace()) // Substitute in new filenames
+        .pipe(plug.revReplace()) // Substitute in new filenames
         .pipe(gulp.dest(paths.build)) // write the index.html file changes
         .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
         .pipe(gulp.dest(paths.build)); // write the manifest
@@ -132,17 +117,8 @@ gulp.task('js', ['templatecache'], function(){
 ///////////////////////////////////////////
 gulp.task('vendorjs', function(){
     return gulp
-        //.src(['app/libs/**/*.js', '!app/libs/**/*.min.js'])
         .src(paths.vendorjs)
         .pipe(plug.concat('vendor.min.js'))
-        .pipe(plug.ngAnnotate({
-            remove: true,
-            add: true,
-            single_quotes: true
-        }))
-        //.pipe(plug.uglify({
-        //    mangle: true
-        //}))
         .pipe(gulp.dest(paths.build + 'js/'))
 });
 
